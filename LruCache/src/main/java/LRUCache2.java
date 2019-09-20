@@ -87,13 +87,9 @@ public class LRUCache2 {
     }
 
 
-
-
-
     private class DLinkedNode {
         int key;
         int value;
-
         DLinkedNode pre;
         DLinkedNode next;
 

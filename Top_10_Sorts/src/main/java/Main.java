@@ -13,51 +13,56 @@ import java.util.Scanner;
  * @Date: 2019/8/15 19:52
  */
 public class Main {
+    public static String validIpAddress(String IP) {
+        if (IP.startsWith(":") || IP.startsWith(".")
+                || IP.endsWith(":") || IP.endsWith(".")) {
+            return "Neither";
+        }
+
+        String[] splitted = IP.split("\\.");
+        if (splitted.length == 4) {
+            int num = -1;
+            for (int i = 0; i < 4; i++) {
+                try {
+                    num = Integer.parseInt(splitted[i]);
+                } catch (Exception e) {
+                    return "Neither";
+                }
+                if (num < 0 || num > 255) {
+                    return "Neither";
+                }
+
+                if (splitted[i].length() > 1 && (splitted[i].startsWith("0") || splitted[i].startsWith("-"))) {
+                    return "Neither";
+                }
+            }
+            return "IPv4";
+        } else {
+            splitted = IP.split(":");
+            if (splitted.length == 8) {
+                int num = -1;
+                for (int i = 0; i < 8; i++) {
+                    int len = splitted[i].length();
+                    if (splitted[i] == null || len > 4 || len == 0) {
+                        return "Neither";
+                    }
+                    for (int j = 0; j < len; j++) {
+                        char c = splitted[i].charAt(j);
+                        if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')) || (c >= 'A' && c <= 'F')) {
+                            return "Neither";
+                        }
+                    }
+                }
+                return "IPv6";
+            } else {
+                return "Neither";
+            }
+        }
+
+    }
     public static void main(String[] args) {
-        int a[][] = new int[100][100] ;
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int m = scanner.nextInt();
-        List<Integer> hanglist = new ArrayList<>();
-        List<Integer> lielist = new ArrayList<>();
-        int lieMax = 0;
-        int hangMax = 0;
-        int zeroNums = 0;
-        for (int i = 0; i <n ; i++) {
-            for (int j = 0; j <m ; j++) {
-                int temp= scanner.nextInt();
-                if (temp != 0) {
-                    zeroNums++;
-                }
-                a[i + 1][j + 1] = temp;
-                if (temp >= hangMax) {
-                    hangMax = temp;
-                }
-            }
-            hanglist.add(hangMax);
-        }
-        for (int j = 0; j <m ; j++) {
-            for (int i = 0; i <n ; i++) {
-                int temp = a[i + 1][j + 1];
-                if (temp >= lieMax) {
-                    lieMax = temp;
-                }
-            }
-            lielist.add(lieMax);
-        }
-        int sum1 = 0;
-        for (int i = 0; i <lielist.size() ; i++) {
-            sum1 = lielist.get(i) + sum1;
-        }
-        sum1 = sum1 * 2;
-
-        int sum2 = 0;
-        for (int i = 0; i <hanglist.size() ; i++) {
-            sum2 = hanglist.get(i) + sum2;
-        }
-        sum2 = sum2* 2;
-
-        System.out.println(sum1 + sum2 + zeroNums);
-
+        Scanner sc = new Scanner(System.in);
+        String ip = sc.next();
+        System.out.println(validIpAddress(ip));
     }
 }

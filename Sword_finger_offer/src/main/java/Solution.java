@@ -1,4 +1,5 @@
 import javax.swing.tree.TreeNode;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -9,32 +10,30 @@ import java.util.HashMap;
  * */
 
 
+
+
 public class Solution {
-    public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
-        if (pre.length == 0 || in.length == 0) {
-            return null;
+    public int TreeDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
         }
-        TreeNode root = new TreeNode(pre[0]);
-        for (int i = 0; i < in.length; i++) {
-            if (in[i] == pre[0]) {
-                root.left = reConstructBinaryTree(Arrays.copyOfRange(pre, 1, i + 1)
-                        , Arrays.copyOfRange(in, 0, i));
-                root.right = reConstructBinaryTree(Arrays.copyOfRange(pre, i + 1, pre.length)
-                        , Arrays.copyOfRange(in, i + 1, in.length));
-                break;
-            }
+       int left=TreeDepth(root.left);
+        int right=TreeDepth(root.right);
+        return Math.max(left, right)+1;
+    }
+     class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        public TreeNode(int val) {
+            this.val = val;
         }
-        return root;
+
     }
 
-
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
+    public static void main(String[] args) {
+        BigDecimal a = new BigDecimal(20);
+        System.out.println(a.multiply(null));
     }
 }

@@ -18,7 +18,7 @@ public class reOrderArray {
                     if (!isEven(array[j])) {
                         temp = array[j];
                         for (int k = j-1; k>=i ; k--) {
-                             array[k + 1]=array[k] ;
+                            array[k + 1]=array[k] ;
                         }
                         array[i] = temp;
                         break;
@@ -36,7 +36,6 @@ public class reOrderArray {
         }
         return false;
     }
-
 
 
 }
