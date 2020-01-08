@@ -29,7 +29,7 @@ public class QuickSort {
         return low;
     }
 
-    private static void qsort(int[] arr, int low, int high) {
+    private static  void qsort(int[] arr, int low, int high) {
         if (low >= high) {
             return;
         }
@@ -37,9 +37,12 @@ public class QuickSort {
         qsort(arr, low, pivot - 1);
         qsort(arr, pivot + 1, high);
     }
-    public static void sort(int[] arr){
+
+    private static void sort(int[] arr) {
         qsort(arr,0,arr.length-1);
     }
+
+
 
     public static void main(String[] args) {
         int[] a = {1, 3, 4, 5, 2};
@@ -48,6 +51,8 @@ public class QuickSort {
             System.out.println(a[i]);
         }
     }
+
+
 }
 
 

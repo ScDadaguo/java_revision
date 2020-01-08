@@ -1,39 +1,24 @@
-import javax.swing.tree.TreeNode;
-import java.math.BigDecimal;
+
+//入一个链表，输出该链表中倒数第k个结点。
+
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-/**'
- * 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字
- * 。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
- * Definition for binary tree
- * */
-
-
-
+import static java.util.stream.Collectors.toList;
 
 public class Solution {
-    public int TreeDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-       int left=TreeDepth(root.left);
-        int right=TreeDepth(root.right);
-        return Math.max(left, right)+1;
-    }
-     class TreeNode {
-        int val = 0;
-        TreeNode left = null;
-        TreeNode right = null;
-
-        public TreeNode(int val) {
-            this.val = val;
-        }
-
-    }
 
     public static void main(String[] args) {
-        BigDecimal a = new BigDecimal(20);
-        System.out.println(a.multiply(null));
+        List<String> list = new ArrayList<>();
+        list.add("aaa bbb ccc");
+        list.add("ddd eee fff");
+        list.add("ggg hhh iii");
+
+        list = list.stream().map(s -> s.split(" ")).flatMap(strings -> Stream.of(strings)).collect(toList());
+//        list.forEach(s-> System.out.println(s));
+
     }
 }

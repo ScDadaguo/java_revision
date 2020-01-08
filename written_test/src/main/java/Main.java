@@ -2,7 +2,15 @@
  * Copyright: 2019 dingxiang-inc.com Inc. All rights reserved.
  */
 
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.function.BiPredicate;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.*;
 
 /**
  * @FileName: Main.java
@@ -11,72 +19,90 @@ import java.util.Scanner;
  * @Date: 2019/8/20 19:24
  */
 public class Main {
-    public static void swap(char a, char b) {
-        char temp = a;
-        a = b;
-        b = temp;
-    }
-
-    public static void swap_str(char[] str, int start, int end) {
-        int low = start;
-        int high = end;
-        while (low < high) {
-            swap(str[low], str[high]);
-            low++;
-            high--;
-        }
-    }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String target = sc.nextLine();
-        String s=reverseSentence(target);
-        System.out.println(target);
-//        char[] str = target.toCharArray();
-//        int s = 0;
-//        int e = 0;
-//        for (int i = 0; i <target.length() ; i++) {
-//            e = i;
-//            if (str[e] == ' ') {
-//                swap_str(str, s, e - 1);
-//                s = e + 1;
-//            }
+//        List<Person> personList = new ArrayList<>();
+//        personList.add(new Person("wang",18,1));
+//        personList.add(new Person("li",20,1));
+//        personList.add(new Person("guohao",22,2));
+//        personList.add(new Person("guohao2",22,1));
+//        personList.add(new Person("hhd",24,1));
+//        personList.add(new Person("ai",22,2));
+//        personList.add(new Person("gti",24,1));
 //
-//        }
-//        System.out.println(str);
+//        Map<Integer, Map<Integer, List<Person>>> map = personList.stream().collect(groupingBy(Person::getAge,groupingBy(Person::getSex)));
+//        System.out.println(map.toString());
+        BigDecimal bigDecimal = new BigDecimal("1.0");
+        BigDecimal bigDecimal2 = new BigDecimal("2.00");
+        BigDecimal bigDecimal3 = new BigDecimal("3.00");
+        System.out.println(bigDecimal.max(bigDecimal2));
+
+//        List<BigDecimal> list = new ArrayList<>();
+//        list.add(bigDecimal);
+//        list.add(bigDecimal2);
+//        list.add(bigDecimal3);
+//        BigDecimal sum = list.stream().max(BigDecimal::compareTo).get();
+//        System.out.println(sum);
+//        System.out.println(BigDecimal.valueOf(Long.MAX_VALUE));
+//        System.out.println(  Long.MAX_VALUE);
+//        Long l = new Long("2.3");
+//        System.out.println(l);
+
+
+//        System.out.println(sum);
+//        System.out.println(bigDecimal.compareTo(bigDecimal2));
+//        System.out.println(bigDecimal.equals(bigDecimal2));
+//        System.out.println(BigDecimal.ONE);
+//        System.out.println(BigDecimal.TEN.add(new BigDecimal("2.44")));
+
 
     }
 
-    public static String reverseSentence(String str) {
-        if (str == null) {
-            return str;
-        }
-        char[] cs = str.toCharArray();
-        int begin = 0;
-        int end = cs.length - 1;
-        reverse(cs, begin, end);
-        begin = end = 0;
-        while (begin < cs.length) {
-            if (cs[begin] == ' ') {
-                begin++;
-                end++;
-            } else if (end == cs.length || cs[end] == ' ') {
-                reverse(cs, begin, --end);
-                begin = ++end;
-            } else {
-                end++;
-            }
-        }
-        return new String(cs);
-    }
+    public static class Person{
+        private String name;
+        private Integer age;
+        private int sex;
 
-    private static void reverse(char[] str, int begin, int end) {
-        while (begin <= end) {
-            char temp = str[begin];
-            str[begin] = str[end];
-            str[end] = temp;
-            begin++;
-            end--;
+        public Person(String name) {
+            this.name = name;
+        }
 
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Person(String name, Integer age,int sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+
+        public int getSex() {
+            return sex;
+        }
+
+        public void setSex(int sex) {
+            this.sex = sex;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    ", sex=" + sex +
+                    '}';
         }
     }
 }

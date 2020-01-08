@@ -4,6 +4,7 @@
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 /**
@@ -38,5 +39,11 @@ public class Test1 {
         s1.intern();            // 常量池中的已经存在
         String s2 = "1";
         System.out.println(s1 == s2);
+    }
+
+    @Test
+    public void test2(){
+        BigDecimal bigDecimal = new BigDecimal(2.6);
+        System.out.println(bigDecimal.compareTo(BigDecimal.valueOf(6.7)));
     }
 }
